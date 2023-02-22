@@ -11,22 +11,31 @@
 
 // Mapping of onboard IO pins to actions (which key to press and when to press it).
 // For each pin, you can specify what key to send when the pin level rises or falls.
-#define PIN_KEY_MAP_SIZE 8
+#define PIN_KEY_MAP_SIZE 12
 PinKeyMap pin_key_map[PIN_KEY_MAP_SIZE] = {
-        {p0, KEY_F13, ACTIVATE_WHEN_RISE},
-        {p0, KEY_F14, ACTIVATE_WHEN_FALL},
-        {p1, KEY_F15, ACTIVATE_WHEN_RISE},
-        {p1, KEY_F16, ACTIVATE_WHEN_FALL},
-        {p2, KEY_F17, ACTIVATE_WHEN_RISE},
-        {p2, KEY_F18, ACTIVATE_WHEN_FALL},
-        {p3, KEY_F19, ACTIVATE_WHEN_RISE},
-        {p3, KEY_F20, ACTIVATE_WHEN_FALL},
+        {p9, KEY_F13, ACTIVATE_WHEN_RISE},
+        {p9, KEY_F14, ACTIVATE_WHEN_FALL},
+        {p10, KEY_F15, ACTIVATE_WHEN_RISE},
+        {p10, KEY_F16, ACTIVATE_WHEN_FALL},
+        {p11, KEY_F17, ACTIVATE_WHEN_RISE},
+        {p11, KEY_F18, ACTIVATE_WHEN_FALL},
+        {p12, KEY_F19, ACTIVATE_WHEN_RISE},
+        {p12, KEY_F20, ACTIVATE_WHEN_FALL},
+        {p14, KEY_F21, ACTIVATE_WHEN_RISE},
+        {p14, KEY_F22, ACTIVATE_WHEN_FALL},
+        {p15, KEY_F23, ACTIVATE_WHEN_RISE},
+        {p15, KEY_F24, ACTIVATE_WHEN_FALL},
 };
 
 /**** END OF CONFIGURATION ****/
 
 USBKeyboard Keyboard;
 
+/**
+ * Print debug information about a mapping to Serial out.
+ * @param map
+ * @param include_newline   End the print with a new line or not (in case you want to add something yourself)
+ */
 void print_pin_configuration(PinKeyMap *map, bool include_newline) {
     char buffer[256] = {0};
     sprintf(buffer, "Pin %d for key %d with action %d has previous state %s.%c",
@@ -36,6 +45,10 @@ void print_pin_configuration(PinKeyMap *map, bool include_newline) {
     Serial.print(buffer);
 }
 
+/**
+ * Send the keycode (with modifier included by bit shift of 8) to the computer
+ * @param key
+ */
 void keyboard_send(int16_t key) {
     int key_code = key & 0xff;
     int modifier = (key >> 8) & 0xff;

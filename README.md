@@ -21,13 +21,13 @@ So currently the design is as follows:
 #### Hardware
 
 - Raspberry Pico as microcontroller
-- Custom PCB to extend the MCU's inputs to handy connector blocks.
+- Custom PCB to extend the MCU's inputs to handy connector blocks (see [picostreamdeck-hardware](https://github.com/sampie777/picostreamdeck-hardware)).
 - USB cable
 
 ##### Embedded software
 
 The microcontroller is programmed with the source code in this repository. The code is very straight forward:
-- Configure PinKeyMappings which bind keybindings to events on the MCU input pins. For example: ```(PinKeyMap) {p0, KEY_F13, ACTIVATE_WHEN_RISE}``` will fire a F13 (function key 13, the same as SHIFT + F1) key stroke to the computer when the voltage on IO pin 0 goes from 0V to 3.3V. Note that you can specify any key code you want. Only a few (as I don't see the need for more) are defined using macros in `keycodes.h`.
+- Configure PinKeyMappings which bind keybindings to events on the MCU input pins. For example: ```(PinKeyMap) {p0, KEY_F13, ACTIVATE_WHEN_RISE}``` will fire a F13 (function key 13, the same as SHIFT + F1) keystroke to the computer when the voltage on IO pin 0 goes from 0V to 3.3V. Note that you can specify any key code you want. Only a few (as I don't see the need for more) are defined using macros in `keycodes.h`.
 - The processor will check all input pins once every `LOOP_INTERVAL_MS` milliseconds. This is a cheap way of debouncing the inputs and preventing keystroke spams to the computer.
 
 The source code is written using PlatformIO (v6.1.6). I also downloaded the libraries 'Keyboard' (v1.0.4) and 'USBHost' (v1.0.5) using the Library Manager built in Arduino IDE. 
