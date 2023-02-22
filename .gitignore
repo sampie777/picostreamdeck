@@ -1,0 +1,9 @@
+.pio
+CMakeListsPrivate.txt
+cmake-build-*/ 
+build/
+sdkconfig.old
+*.iml
+.idea/
+secrets.h
+esp-idf/
