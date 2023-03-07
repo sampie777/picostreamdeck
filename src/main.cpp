@@ -91,15 +91,14 @@ void setup() {
         pinMode(map.pin, INPUT_PULLDOWN);
     }
 
-    Serial.print("picostreamdeck v");
-    Serial.println(APP_VERSION);
     Serial.println("Let the inputs settle...");
     delay(1000);
+    Serial.print("picostreamdeck version: ");
+    Serial.println(APP_VERSION);
     Serial.println("Ready.");
 }
 
 void loop() {
-    Serial.print(".");
     digitalWrite(LED_BUILTIN, HIGH);
 
     for (PinKeyMap &map: pin_key_map) {
