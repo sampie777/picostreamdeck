@@ -9,6 +9,9 @@
 // Useful for debouncing.
 #define LOOP_INTERVAL_MS 1000
 
+// Let the LED blink for at least X milliseconds to indicate the measurement cycle.
+#define LED_MIN_TIME_ON_MS 50
+
 // Mapping of onboard IO pins to actions (which key to press and when to press it).
 // For each pin, you can specify what key to send when the pin level rises or falls.
 #define PIN_KEY_MAP_SIZE 12
@@ -90,11 +93,13 @@ void setup() {
 }
 
 void loop() {
-    delay(LOOP_INTERVAL_MS);
-
     digitalWrite(LED_BUILTIN, HIGH);
+
     for (PinKeyMap &map: pin_key_map) {
         process_pin(&map);
     }
+
+    delay(LED_MIN_TIME_ON_MS);
     digitalWrite(LED_BUILTIN, LOW);
+    delay(max(LOOP_INTERVAL_MS - LED_MIN_TIME_ON_MS, 0));
 }
