@@ -84,7 +84,7 @@ void process_pin(PinKeyMap *map) {
 void setup() {
     Serial.begin(9600);
     for (PinKeyMap map: pin_key_map) {
-        pinMode(map.pin, INPUT);
+        pinMode(map.pin, INPUT_PULLDOWN);
     }
     Serial.println("Ready.");
 }
