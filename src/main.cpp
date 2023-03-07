@@ -17,18 +17,18 @@
 // For each pin, you can specify what key to send when the pin level rises or falls.
 #define PIN_KEY_MAP_SIZE 12
 PinKeyMap pin_key_map[PIN_KEY_MAP_SIZE] = {
-        {p9, KEY_F13, ACTIVATE_WHEN_RISE},
-        {p9, KEY_F14, ACTIVATE_WHEN_FALL},
-        {p10, KEY_F15, ACTIVATE_WHEN_RISE},
-        {p10, KEY_F16, ACTIVATE_WHEN_FALL},
-        {p11, KEY_F17, ACTIVATE_WHEN_RISE},
-        {p11, KEY_F18, ACTIVATE_WHEN_FALL},
-        {p12, KEY_F19, ACTIVATE_WHEN_RISE},
-        {p12, KEY_F20, ACTIVATE_WHEN_FALL},
-        {p14, KEY_F21, ACTIVATE_WHEN_RISE},
-        {p14, KEY_F22, ACTIVATE_WHEN_FALL},
-        {p15, KEY_F23, ACTIVATE_WHEN_RISE},
-        {p15, KEY_F24, ACTIVATE_WHEN_FALL},
+        {p6, KEY_F13, ACTIVATE_WHEN_RISE},
+        {p6, KEY_F14, ACTIVATE_WHEN_FALL},
+        {p7, KEY_F15, ACTIVATE_WHEN_RISE},
+        {p7, KEY_F16, ACTIVATE_WHEN_FALL},
+        {p8, KEY_F17, ACTIVATE_WHEN_RISE},
+        {p8, KEY_F18, ACTIVATE_WHEN_FALL},
+        {p9, KEY_F19, ACTIVATE_WHEN_RISE},
+        {p9, KEY_F20, ACTIVATE_WHEN_FALL},
+        {p10, KEY_F21, ACTIVATE_WHEN_RISE},
+        {p10, KEY_F22, ACTIVATE_WHEN_FALL},
+        {p11, KEY_F23, ACTIVATE_WHEN_RISE},
+        {p11, KEY_F24, ACTIVATE_WHEN_FALL},
 };
 
 /**** END OF CONFIGURATION ****/
@@ -99,6 +99,7 @@ void setup() {
 }
 
 void loop() {
+    Serial.print(".");
     digitalWrite(LED_BUILTIN, HIGH);
 
     for (PinKeyMap &map: pin_key_map) {
