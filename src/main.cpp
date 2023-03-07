@@ -2,6 +2,7 @@
 #include "USBKeyboard.h"
 #include "keycodes.h"
 #include "definitions.h"
+#include "version.h"
 
 /**** CONFIGURATION ****/
 
@@ -89,6 +90,11 @@ void setup() {
     for (PinKeyMap map: pin_key_map) {
         pinMode(map.pin, INPUT_PULLDOWN);
     }
+
+    Serial.print("picostreamdeck v");
+    Serial.println(APP_VERSION);
+    Serial.println("Let the inputs settle...");
+    delay(1000);
     Serial.println("Ready.");
 }
 
