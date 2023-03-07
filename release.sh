@@ -14,7 +14,7 @@ RELEASE_VERSION="${BRANCH}-${VERSION}"
 echo "Set version: ${RELEASE_VERSION}"
 setVersion "${RELEASE_VERSION}" || exit 1
 
-git add main/version.h || exit 1
+git add src/version.h || exit 1
 git commit -m "version release: ${RELEASE_VERSION}" || exit 1
 git tag "v${RELEASE_VERSION}" || exit 1
 git push -u origin --tags || exit 1
